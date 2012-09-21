@@ -145,8 +145,39 @@ class uLogin
 		
 		return false;
 	}
-	
-	/**
+
+    /**
+     * Read response with available wrapper
+     *
+     * @access private
+     * @return string
+     */
+   private function __get_response($url = ""){
+
+       $s = array("error" => "file_get_contents or curl required");
+
+       if (in_array('curl', get_loaded_extensions())) {
+
+           $request = curl_init($url);
+           curl_setopt($request, CURLOPT_RETURNTRANSFER, 1);
+           curl_setopt($request, CURLOPT_BINARYTRANSFER, 1);
+           $result = curl_exec($request);
+           $s = $result ? $result : $s;
+
+       }elseif (function_exists('file_get_contents') && ini_get('allow_url_fopen')){
+
+           $result = file_get_contents($url);
+           $s = $result ? $result : $s;
+
+       }
+
+       return $s;
+
+   }
+
+
+
+    /**
 	 * Get user from ulogin.ru by token
 	 * 
 	 * @access 	private
@@ -161,23 +192,25 @@ class uLogin
 		
 		if ($this->token)
 		{
-			$info = file_get_contents('http://ulogin.ru/token.php?token=' . $this->token . '&host=' . $_SERVER['HTTP_HOST']);
-			
+			$info = $this->__get_response('http://ulogin.ru/token.php?token=' . $this->token . '&host=' . $_SERVER['HTTP_HOST']);
+
+            $data = array();
+
 			if (function_exists('json_decode'))
 			{
-				$this->user = json_decode($info, true);
+                $this->user = json_decode($info, true);
 			}
 			else
 			{
 				$json = new Services_JSON();
-				
 				$this->user = $json->decode($info, true);
 			}
-			
-			return $this->user;
+
+            return $this->user;
+
 		}
 		
-		return NULL;
+		return null;
 	}
 	
 	/**
@@ -224,8 +257,8 @@ class uLogin
 			return false;
 		}
 		
-		$avatar = file_get_contents($this->user['photo']);
-		
+		$avatar = $this->__get_response($this->user['photo']);
+
 		$fp = fopen($file, "w+");
 		fwrite($fp, $avatar);
 		fclose($fp);
@@ -249,11 +282,7 @@ class uLogin
 	 */
 	public function auth()
 	{
-		if (!$this->user)
-		{
-			return false;
-		}
-		
+
 		if (!$user = $this->__get_first("SELECT * FROM " . TABLE_PREFIX . "ulogin WHERE identity = '" . $this->db->sql_escape($this->user['identity']) . "'"))
 		{
 			return false;
@@ -277,11 +306,12 @@ class uLogin
 	public function register()
 	{
 		global $config, $user, $phpbb_root_path, $phpEx;
-		
-		if (isset($this->user['error']))
-		{
-			return false;
-		}
+
+        if (!$this->user || isset($this->user['error']))
+        {
+            return false;
+        }
+
 		
 		$data = array(
 			'username'		=> utf8_normalize_nfc($this->__fetch_random_name()),

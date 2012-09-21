@@ -80,3 +80,8 @@ uLogin — это инструмент, который позволяет пол
 
 
 English installation guide: install_mod.xml 
+
+==Changelog==
+
+- Добавлена поддержка curl;
+- Добавлена проверка пользовательских данных, полученных от uLogin. Для обновления достаточно просто скоипровать файлы из директории root в корневой каталог phpbb (/includes/ulogin/ulogin_register.php,/includes/ulogin/class_ulogin.php).

@@ -34,8 +34,12 @@ class ulogin_register
 		{
 			$user_id = $uLogin->register();
 		}
-		
-		$session = $user->session_create($user_id, 0, 1);
+
+        if ($user_id){
+
+		    $session = $user->session_create($user_id, 0, 1);
+
+        }
 		
 		if (!$session)
 		{
