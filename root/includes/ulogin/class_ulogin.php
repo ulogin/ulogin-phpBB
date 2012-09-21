@@ -192,7 +192,7 @@ class uLogin
 		
 		if ($this->token)
 		{
-			$info = $this->__get_response('http://ulogin.ru/token.php?token=' . $this->token . '&host=' . $_SERVER['HTTP_HOST']);
+			$info = $this->__get_response('http://ulogin.ru/token.php?token=' . $this->token);
 
             $data = array();
 
