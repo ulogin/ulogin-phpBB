@@ -265,10 +265,11 @@ class uLogin
 		
 		if (file_exists($file))
 		{
-			list($width, $height) = getimagesize($file);
+			if(list($width, $height) = getimagesize($file)){
 			
 			$this->db->sql_query("UPDATE `" . USERS_TABLE . "` SET user_avatar = '" . $db_name . "', user_avatar_type = '1', user_avatar_width = '" . $width . "', user_avatar_height = '" . $height . "' WHERE user_id = " . $user_id);
 			return true;
+			}
 		}
 		
 		return false;
