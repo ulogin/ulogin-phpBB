@@ -1,0 +1,7 @@
+ulogin_login_controller:
+    path: /ulogin/login
+    defaults: { _controller: uloginteam.ulogin.controller:login}
+
+ulogin_delete_controller:
+    path: /ulogin/delete_account
+    defaults: { _controller: uloginteam.ulogin.controller:delete_account}

@@ -1,0 +1,37 @@
+services:
+    uloginteam.ulogin.controller:
+        class: uloginteam\ulogin\controller\main
+        arguments:
+            - @uloginteam.ulogin.model
+            - @auth
+            - @cache
+            - @config
+            - @dbal.conn
+            - @request
+            - @template
+            - @user
+            - @controller.helper
+            - @plupload
+            - %core.root_path%
+            - %core.php_ext%
+    uloginteam.ulogin.model:
+        class: uloginteam\ulogin\core\model
+        arguments:
+            - @config
+            - @dbal.conn
+            - @auth
+            - @user
+            - %core.root_path%
+            - %core.php_ext%
+            - %core.table_prefix%
+    uloginteam.ulogin.listener:
+        arguments:
+            - @config
+            - @template
+            - @user
+            - @request
+            - %core.root_path%
+            - %core.php_ext%
+        class: uloginteam\ulogin\event\listener
+        tags:
+            - { name: event.listener }

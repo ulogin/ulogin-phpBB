@@ -1,0 +1,42 @@
+<!-- INCLUDECSS //ulogin.ru/css/providers.css -->
+<!-- INCLUDECSS ../theme/ulogin.css -->
+
+<!-- INCLUDE ucp_header.html -->
+
+    <h2>{L_TITLE}</h2>
+
+    <div class="panel">
+        <div class="inner">
+            <fieldset>
+                <dl>
+                    <dt>
+                        <label>{L_ADD_ACCOUNT}</label><br>
+                        <span>{L_ADD_ACCOUNT_EXPLAIN}</span>
+                    </dt>
+                    <dd>
+                        <!-- INCLUDE ulogin_panel2.html -->
+                    </dd>
+                </dl>
+
+                <dl>
+                    <dt>
+                        <label>{L_DELETE_ACCOUNT}</label><br>
+                        <span>{L_DELETE_ACCOUNT_EXPLAIN}</span>
+                    </dt>
+                    <dd>
+                        <div class="ulogin_accounts can_delete">
+                            <!-- BEGIN networks -->
+                                <div data-ulogin-network='{networks.NETWORK}'
+                                     class="ulogin_provider big_provider {networks.NETWORK}_big"
+                                     onclick="uloginDeleteAccount('{networks.NETWORK}')"></div>
+                            <!-- END networks -->
+                        </div><div style="clear:both"></div>
+                    </dd>
+                </dl>
+            </fieldset>
+
+        </div>
+    </div>
+
+
+<!-- INCLUDE ucp_footer.html -->
