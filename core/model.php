@@ -69,7 +69,7 @@ class model
 				WHERE user_id = '" . $u_id . "'";
 
 		$result = $this->db->sql_query($sql);
-		$result = $result->num_rows > 0 ? true : false;
+		$result = $this->db->sql_fetchrow($result) !== false ? true : false;
 		$this->db->sql_freeresult();
 
 		if (!$result) { return false; }
@@ -90,7 +90,7 @@ class model
 				WHERE username_clean LIKE '" . $this->db->sql_escape($username) . "'";
 
 		$result = $this->db->sql_query($sql);
-		$result = $result->num_rows > 0 ? true : false;
+		$result = $this->db->sql_fetchrow($result) !== false ? true : false;
 		$this->db->sql_freeresult();
 
 		if (!$result) { return false; }
@@ -255,7 +255,6 @@ class model
 		$sql = "UPDATE " . USERS_TABLE . "
 			SET " . $this->db->sql_build_array("UPDATE", $data) . "
 			WHERE user_id = '" . $u_id . "'";
-		$this->db->sql_query($sql);
 
 		$result = $this->db->sql_query($sql);
 		$row = $this->db->sql_fetchrow($result);

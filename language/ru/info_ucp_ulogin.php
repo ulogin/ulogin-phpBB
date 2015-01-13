@@ -18,5 +18,4 @@ $lang = array_merge($lang, array(
 	'DELETE_ACCOUNT'         => 'Привязанные аккаунты',
 	'DELETE_ACCOUNT_EXPLAIN' => 'Удалите привязку к аккаунту, кликнув по значку',
 	'UCP_ULOGIN_USER_PANEL'  => 'Социальные сети',
-	'G_REGISTERED_ULOGIN'    => 'Зарегистрированные пользователи (uLogin)',
 ));

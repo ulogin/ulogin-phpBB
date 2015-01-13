@@ -33,7 +33,5 @@ $lang = array_merge($lang, array(
 	'ULOGIN_GROUP_ID'           => 'Группа пользователей',
 	'ULOGIN_GROUP_ID_EXPLAIN'   => 'Группа для новых пользователей, регистрирующихся с помощью uLogin',
 	'ULOGIN_LABEL_UCP'          => 'Войти через:',
-	'G_REGISTERED_ULOGIN'       => 'Зарегистрированные пользователи (uLogin)',
-
 ));
 

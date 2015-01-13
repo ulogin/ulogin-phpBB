@@ -410,7 +410,12 @@ class main
 		// Instantiate passwords manager
 		$passwords_manager = $phpbb_container->get('passwords.manager');
 
-		$login = $this->generateNickname($u_data['first_name'],$u_data['last_name'],$u_data['nickname'],$u_data['bdate']);
+		$login = $this->generateNickname(
+			isset($u_data['first_name']) ? $u_data['first_name'] : '',
+			isset($u_data['last_name']) ? $u_data['last_name'] : '',
+			isset($u_data['nickname']) ? $u_data['nickname'] : '',
+			isset($u_data['bdate']) ? $u_data['bdate'] : ''
+		);
 		$password = md5($u_data['identity'].time().rand());
 		$password = substr($password, 0, 12);
 
@@ -418,7 +423,7 @@ class main
 			'username'				=> $login,
 			'user_password'			=> $passwords_manager->hash($password),
 			'user_email'			=> $u_data['email'],
-			'user_birthday'         => $u_data['bdate'] ? date('d-m-Y', strtotime($u_data['bdate'])) : '',
+			'user_birthday'         => isset($u_data['bdate']) ? date('d-m-Y', strtotime($u_data['bdate'])) : '',
 			'group_id'				=> (int) $group_id,
 			'user_timezone'			=> $this->config['board_timezone'],
 			'user_lang'				=> basename($user->lang_name),
