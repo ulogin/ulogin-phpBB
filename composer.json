@@ -1,0 +1,29 @@
+{
+    "name": "uloginteam/ulogin",
+    "type": "phpbb-extension",
+    "description": "uLogin — это инструмент, который позволяет пользователям получить единый доступ к различным Интернет-сервисам без необходимости повторной регистрации, а владельцам сайтов — получить дополнительный приток клиентов из социальных сетей и популярных порталов (Google, Яндекс, Mail.ru, ВКонтакте, Facebook и др.)",
+    "homepage": "https://ulogin.ru",
+    "version": "2.0.1",
+    "keywords": ["ulogin", "login", "social", "authorization"],
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "uLogin Team",
+            "homepage": "https://ulogin.ru",
+            "email": "team@ulogin.ru",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "require-dev": {
+        "phpbb/epv": "dev-master"
+    },
+    "extra": {
+        "display-name": "uLogin Authorization",
+        "soft-require": {
+           "phpbb/phpbb": ">=3.1.*"
+        }
+    }
+}

@@ -1,0 +1,14 @@
+.ulogin_provider {
+    margin-right: 10px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.ulogin_form {
+    display: inline-block;
+    line-height: 1em;
+}
+
+.ulogin_accounts {
+    font-size: 1px;
+}
